@@ -1,9 +1,13 @@
 import './App.css';
-import List from './List';
+import List from './List.js';
 
 function App() {
   return (
-    <List />
+    <div className='App'>
+      <h1>To Do App</h1>
+      <List />
+    </div>
+    
   );
 }
 

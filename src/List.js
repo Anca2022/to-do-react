@@ -1,21 +1,29 @@
 import {useState} from 'react';
 import Todo from "./Todo";
+import './App.css'
 
 export default function List(){
-    const [state, setState] = useState([]);  
-    function handleChange(e){
-        console.log(e.target.value)
+    const [toDoItems, setToDoItems] = useState([]);  
+    console.log(toDoItems);
+    function handleKeyUp(e){
+        if(e.key==='Enter'){
         let todo={task: e.target.value, done:false}; 
-        setState(prevState=> ([...prevState, todo]));
+        setToDoItems(prevState=> ([...prevState, todo]));
+        e.target.value='';
+        }
     }
 
     return(
         <div>
-            <input onChange={handleChange}></input>
+            <input onKeyUp={handleKeyUp}></input>
+             
+            <div className='tasks'> 
+                <h2>Your tasks:</h2>
+                {toDoItems.map(singleState=> (
+                    <Todo currentState={singleState}/>
+                ))}
+            </div> 
             
-             {state.map(singleState=> (
-                <Todo currentState={singleState}/>
-             ))}
             
         </div>
     );
