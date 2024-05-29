@@ -13,8 +13,17 @@ export default function List(){
             e.target.value='';
         }
     }
+    function handleChecked(id){
+        let index = toDoItems.findIndex(element => element.id === id);
+        let arr = [...toDoItems]; 
+        arr[index].done = !arr[index].done; 
+        setToDoItems(arr);
+    }
     function handleEdit(id){
         console.log ('trying to edit ' + id);
+        // let index = toDoItems.findIndex(element => element.id === id);
+        // let arr = [...toDoItems]; 
+        // arr[index]={...item, task:  }
         
     }
     function handleDelete(id){
@@ -35,7 +44,7 @@ export default function List(){
             <div className='tasks'> 
                 <h2>Your tasks:</h2>
                 {toDoItems.map(singleItem=> (
-                    <Todo key={singleItem.id} currentItem={singleItem} handleDelete={()=>handleDelete(singleItem.id)} handleEdit={()=>handleEdit(singleItem.id)} />
+                    <Todo key={singleItem.id} currentItem={singleItem} handleDelete={()=>handleDelete(singleItem.id)} handleEdit={()=>handleEdit(singleItem.id)} handleChecked={()=>handleChecked(singleItem.id)} />
                 ))}
             </div> 
             
