@@ -2,45 +2,82 @@
   text-align: center;
   margin: 2rem 3rem;
 }
-.main-input{
+.App h1 {
+  font-family: "Poetsen One", sans-serif;
+  color: var(--main-color);
+}
+
+input {
+  background-color: var(--list-bg);
+  color: var(--secondary-color);
+  font-family: "LXGW WenKai Mono TC", monospace;
+  font-size: 15px;
+}
+input:focus {
+  outline: 2px solid var(--shadow-task);
+}
+
+.main-input {
   padding: 0.5rem;
   border-radius: 10px;
-  border: 2px solid lightgray;
+  border: 2px solid var(--shadow-task);
+  margin-bottom: 2rem;
 }
-.tasks{
-  text-align:left;
+
+.tasks {
+  background-color: var(--list-bg);
+  text-align: left;
   max-width: 500px;
   margin: 0 auto;
+  padding: 1rem 1rem 2rem 1rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px var(--shadow-list);
+  color: var(--secondary-color);
+  min-height: 200px;
 }
-.single-task{
+.tasks .completed-tasks {
+  margin-top: 2rem;
+}
+.tasks .single-task {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid lightgray;
-  padding:0.3rem;
+  padding: 0.3rem;
+  margin: 0.5rem auto;
+  border-radius: 3px;
+  box-shadow: 1px 2px 6px var(--shadow-task);
 }
-.single-task:last-child{
+.tasks .single-task:last-child {
   border-bottom: none;
 }
-.single-task .inputs{
-  flex-basis:80%;
+.tasks .single-task .inputs {
+  flex-basis: 80%;
 }
-.single-task input[type='text']{
-  border:none;
+.tasks .single-task .inputs input[type=checkbox] {
+  cursor: pointer;
+  accent-color: var(--main-color);
+}
+.tasks .single-task .inputs input[type=text] {
+  border: none;
+  width: -moz-fit-content;
   width: fit-content;
   border-radius: 5px;
-  padding:0.3rem;
-  width:80%;
+  padding: 0.3rem;
+  width: 80%;
 }
-.single-task input[disabled]{
-  background-color: white;
-}
-.buttons{
-  min-width:fit-content;
-  display:flex;
-  flex-direction: row;
-  align-items: center;
-}
-.buttons button{
+.tasks .single-task button {
+  border: 1px solid var(--secondary-color);
+  background-color: var(--list-bg);
+  color: var(--secondary-color);
+  font-family: "LXGW WenKai Mono TC", monospace;
+  border-radius: 5px;
   margin: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  transition: 0.3s ease;
+  cursor: pointer;
 }
+.tasks .single-task button:hover {
+  background-color: var(--main-color);
+  color: var(--list-bg);
+  box-shadow: 2px 2px 5px var(--shadow-task);
+}/*# sourceMappingURL=App.css.map */
