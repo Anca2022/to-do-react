@@ -39,7 +39,13 @@ export default function List(){
     function handleDelete(id){
         let index = toDoItems.findIndex(element => element.id === id);
         let arr = [...toDoItems]; 
-        arr.splice(index, 1); 
+        // let deletedItem = arr.splice(index, 1); 
+        // console.log(deletedItem);
+        // if(deletedItem.done){
+        //    console.log('scoatem de la socoteala itemul'); 
+        //    setItemsDone(prevVal => prevVal-1)};
+        if(arr[index].done){setItemsDone(prevVal => prevVal-1)};
+        arr.splice(index, 1);         
         setToDoItems(arr); 
     }
 
