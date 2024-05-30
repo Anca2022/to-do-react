@@ -1,8 +1,6 @@
-import { useRef } from 'react';
 import '../App.css';
 
 export default function Todo(props){
-    let inputRef = useRef();
     let checkedStyle={
         textDecoration:'line-through'
     }
@@ -12,16 +10,14 @@ export default function Todo(props){
             <div className="inputs">
             <input type="checkbox" onChange={props.handleChecked}></input> 
             <input type='text' 
-                value={props.currentItem.task} 
-                ref={inputRef}
+                defaultValue ={props.currentItem.task} 
+                onKeyUp={(e)=>props.handleUpdate(e, props.currentItem.id)}
+                onBlur={e=>props.handleUpdate(e, props.currentItem.id)}
                 style={props.currentItem.done ? checkedStyle : {}}
-                disabled = {!props.currentItem.editing}
-                onKeyUp={()=>props.handleUpdate()}>
-                </input>
-            {/* <label style={props.currentItem.done ? checkedStyle : {}}>{props.currentItem.task} </label> */}
+                disabled = {props.currentItem.done}>
+            </input>
             </div>
             <div className='buttons'>
-                <button onClick={props.handleEdit} disabled = {props.currentItem.done}>Edit</button>
                 <button onClick={props.handleDelete}>Delete</button>
             </div>
         </div>

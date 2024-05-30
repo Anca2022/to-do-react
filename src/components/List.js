@@ -10,7 +10,7 @@ export default function List(){
     function handleKeyUp(e){
         if(e.key==='Enter'){
             setId(currentId => currentId+1); 
-            let toDoItem={id: currentId, task: e.target.value, done:false, editing:false};  
+            let toDoItem={id: currentId, task: e.target.value, done:false};  
             setToDoItems(prevState=> ([...prevState, toDoItem]));
             e.target.value='';
         }
@@ -21,17 +21,17 @@ export default function List(){
         arr[index].done = !arr[index].done; 
         setToDoItems(arr);
     }
-    function handleEdit(id){
-        let index = toDoItems.findIndex(element => element.id === id);
-        let arr = [...toDoItems];
-        arr[index].editing = !arr[index].editing;
-        // console.log(arr[index]); 
-        setToDoItems(arr); 
-    }
-    // handleUpdate NU MERGE!!!!! 
-    // MODAL!!!! 
-    function handleUpdate(e){
-        console.log(e);
+    
+    function handleUpdate(e, id){
+        if(e.key==='Enter' ||  e.type==='blur') {
+            let index = toDoItems.findIndex(element => element.id === id);
+            let arr = [...toDoItems]; 
+            arr[index].task=e.target.value;
+            setToDoItems(arr); 
+            if (e.key==='Enter') {
+                e.target.blur(); 
+            }
+        }
     }
     function handleDelete(id){
         let index = toDoItems.findIndex(element => element.id === id);
@@ -39,7 +39,6 @@ export default function List(){
         arr.splice(index, 1); 
         setToDoItems(arr); 
     }
-
 
     return(
         <div>
@@ -51,8 +50,7 @@ export default function List(){
                     <Todo key={singleItem.id} 
                         currentItem={singleItem} 
                         handleDelete={()=>handleDelete(singleItem.id)} 
-                        handleEdit={()=>handleEdit(singleItem.id)} 
-                        handleUpdate={()=>handleUpdate}
+                        handleUpdate={handleUpdate}
                         handleChecked={()=>handleChecked(singleItem.id)} 
                     />
                 ))}
