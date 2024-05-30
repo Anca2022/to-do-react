@@ -5,11 +5,13 @@ import '../App.css';
 export default function List(){
     const [toDoItems, setToDoItems] = useState([]);  
     const [currentId, setId]= useState(1); 
+    
+
     function handleKeyUp(e){
         if(e.key==='Enter'){
             setId(currentId => currentId+1); 
-            let todo={id: currentId, task: e.target.value, done:false};  
-            setToDoItems(prevState=> ([...prevState, todo]));
+            let toDoItem={id: currentId, task: e.target.value, done:false, editing:false};  
+            setToDoItems(prevState=> ([...prevState, toDoItem]));
             e.target.value='';
         }
     }
@@ -20,18 +22,20 @@ export default function List(){
         setToDoItems(arr);
     }
     function handleEdit(id){
-        console.log ('trying to edit ' + id);
-        // let index = toDoItems.findIndex(element => element.id === id);
-        // let arr = [...toDoItems]; 
-        // arr[index]={...item, task:  }
-        
+        let index = toDoItems.findIndex(element => element.id === id);
+        let arr = [...toDoItems];
+        arr[index].editing = !arr[index].editing;
+        // console.log(arr[index]); 
+        setToDoItems(arr); 
+    }
+    // handleUpdate NU MERGE!!!!! 
+    // MODAL!!!! 
+    function handleUpdate(e){
+        console.log(e);
     }
     function handleDelete(id){
-        // console.log("elementul de sters: " + id);
         let index = toDoItems.findIndex(element => element.id === id);
-        // console.log('indexul elementului de sters: ' + index);
         let arr = [...toDoItems]; 
-        //console.log(arr === toDoItems); 
         arr.splice(index, 1); 
         setToDoItems(arr); 
     }
@@ -39,12 +43,18 @@ export default function List(){
 
     return(
         <div>
-            <input onKeyUp={handleKeyUp}></input>
+            <input className="main-input" onKeyUp={handleKeyUp} placeholder="enter todo..."></input>
              
             <div className='tasks'> 
                 <h2>Your tasks:</h2>
                 {toDoItems.map(singleItem=> (
-                    <Todo key={singleItem.id} currentItem={singleItem} handleDelete={()=>handleDelete(singleItem.id)} handleEdit={()=>handleEdit(singleItem.id)} handleChecked={()=>handleChecked(singleItem.id)} />
+                    <Todo key={singleItem.id} 
+                        currentItem={singleItem} 
+                        handleDelete={()=>handleDelete(singleItem.id)} 
+                        handleEdit={()=>handleEdit(singleItem.id)} 
+                        handleUpdate={()=>handleUpdate}
+                        handleChecked={()=>handleChecked(singleItem.id)} 
+                    />
                 ))}
             </div> 
             

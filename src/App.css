@@ -2,7 +2,11 @@
   text-align: center;
   margin: 2rem 3rem;
 }
-
+.main-input{
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 2px solid lightgray;
+}
 .tasks{
   text-align:left;
   max-width: 500px;
@@ -17,6 +21,21 @@
 }
 .single-task:last-child{
   border-bottom: none;
+}
+.single-task .inputs{
+  flex-basis:80%;
+}
+.single-task input[type='text']{
+  border:none;
+  width: fit-content;
+  border-radius: 5px;
+  padding:0.3rem;
+  background-color: #f3f6f7;
+  width:80%;
+}
+.single-task input[disabled]{
+  background-color: white;
+  color:black;
 }
 .buttons{
   min-width:fit-content;
