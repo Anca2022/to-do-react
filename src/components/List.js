@@ -3,7 +3,6 @@ import { INITIAL_STATE, toDoReducer } from '../hooks/toDoReducer';
 import Todo from "./Todo";
 import '../App.css';
 
-
 export default function List(){
     const [state, dispatch] = useReducer(toDoReducer, INITIAL_STATE);
 
@@ -31,7 +30,6 @@ export default function List(){
         let index = state.toDoItems.findIndex(element => element.id === id);
         dispatch({type:"DELETE_TASK", payload:index});
     }
-    console.log(state.toDoItems);
     return(
         <div>
             <input className="main-input" onKeyUp={handleKeyUp} placeholder="enter todo..."></input>
